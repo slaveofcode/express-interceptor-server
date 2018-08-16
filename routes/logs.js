@@ -8,11 +8,7 @@ const handler = async (req, res, next) => {
 
   const db = await getDB();
 
-  const dateSorterDesc = (item) => {
-    const r = (new Date() - new Date(item.createdAt));
-    console.log(r);
-    return r;
-  };
+  const dateSorterDesc = (item) => (new Date() - new Date(item.createdAt));
 
   const inputLogs = await db
     .get("inputLogs")
