@@ -1,8 +1,9 @@
 'use strict';
 
-const db = require('../modules/lowdb');
+const { getDB } = require('../modules/lowdb');
 
 const handler = async (req, res, next) => {
+  const db = await getDB();
   const hosts = await db
     .get("hosts")
     .value();

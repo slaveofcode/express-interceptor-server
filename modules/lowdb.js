@@ -35,11 +35,13 @@ const cycleDBPerDay = async () => {
   return dbPath;
 } 
 
-const getDB = dbFileName => low(new FileAsync(dbFileName || "db.json"));
+const getDB = async dbFileName => {
+  const dbPath = await cycleDBPerDay();
+  return low(new FileAsync(dbFileName || dbPath));
+};
 
 const initDB = async () => {
-  const dbPath = await cycleDBPerDay();
-  const db = await getDB(dbPath)
+  const db = await getDB()
   
   await db
     .defaults({

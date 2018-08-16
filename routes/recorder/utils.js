@@ -5,7 +5,7 @@ const { getDB } = require("../../modules/lowdb");
 const detectHost = async hostName => {
   const db = await getDB();
   const foundHost = await db.get('hosts').find({ name: hostName }).value();
-  if (!foundHost) {
+  if (!foundHost && hostName) {
     await db.get('hosts').push({ name: hostName }).write()
   }
 

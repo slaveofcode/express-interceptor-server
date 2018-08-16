@@ -35,4 +35,6 @@ app.use(function (err, req, res, next) {
 initDB();
 
 const PORT = process.env.PORT || 1831;
-app.listen(PORT, () => console.log('Interceptor Server running on port', PORT));
+app.listen(PORT, () =>
+  console.log(`Interceptor Server running on http://localhost:${PORT}`)
+);

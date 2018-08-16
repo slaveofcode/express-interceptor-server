@@ -3,4 +3,5 @@ extends layout
 block content
   h1= title
   each host in payload.hosts
-    li= host.name
+    li
+      a(href=`/logs/${host.name}`)= host.name
