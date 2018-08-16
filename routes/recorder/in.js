@@ -12,5 +12,6 @@ module.exports = async (req, res) => {
     body.hostName,
     body
   );
+  req.app.get('io').emit('new-message');
   res.json({ status: "OK" });
 };
