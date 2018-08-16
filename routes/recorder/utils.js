@@ -17,7 +17,9 @@ const makeLog = (logName) => {
     const db = await getDB();
     return db.get(logName).push({
       hostName,
-      data
+      logKey: data.key,
+      data,
+      createdAt: new Date()
     }).write();
   }
 } 

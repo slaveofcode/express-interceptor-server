@@ -10,6 +10,8 @@ router.use(async (req, res, next) => {
   next();
 })
 router.get('/', require('./home'));
+router.get("/logs/:hostName", require("./logs"));
+
 router.post('/in', require('./recorder/in'));
 router.post("/out", require("./recorder/out"));
 
