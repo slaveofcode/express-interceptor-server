@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const createError = require("http-errors");
 const { initDB } = require('./modules/lowdb');
+const http = require('http');
 
 const app = express();
 
@@ -35,6 +36,15 @@ app.use(function (err, req, res, next) {
 initDB();
 
 const PORT = process.env.PORT || 1831;
-app.listen(PORT, () =>
+
+const server = http.createServer(app);
+
+const socket = require('./socket');
+
+const io = socket(server);
+
+app.set('io', io);
+
+server.listen(PORT, () =>
   console.log(`Interceptor Server running on http://localhost:${PORT}`)
 );
